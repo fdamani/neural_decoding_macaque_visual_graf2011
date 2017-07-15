@@ -1,0 +1,42 @@
+1. c elegans project with andy leifer
+	- infer functional connectivity
+	- just got grant on this project
+	- not spikes -> analog responses (we can use gaussian noise models instead of poission noise models)
+		- likelihood function changes b/c we have gradient potentials
+
+
+2. multinomial logistic regression for spike count data
+	- reorded 100 neurons in visual cortex while different orientations were presented
+	- stimulus was 1D. -> 5 degree steps
+	- measured spike count for several hundred neurons
+	- number X which is orientation and number of counts (they threw out time)
+	- goal: decode. measured data is spike counts, what is the form of this representation in the population?
+	- 72 orientations, 50 repeats each for more than 50 neurons
+	- compared independent possion encoding model
+		- each neuron has a mean response to the 72 different orientations
+			- p(y | x) product of independent probabilities
+				- this gives likelihood
+			- compute posterior p(x|y) 
+			- ignores correlations between neurons - > each neuron looks up its mean response from its tuning curve and generates value from poisson random variable
+	- 2 class SVM between stimulus 1 and 2, 2 and 3, etc
+	- nice result showing correlations have a large amount of information
+
+	- multinomial logistic regression
+		-denominator sums over 72 things
+		- each stimulus has a single weight vector
+
+		- add nice regularization to this
+			- 72 unique stimuli * 200 unique neurons 
+				- you think each neuron is a smooth function of its orientation
+					- instead of doing MAP, we could do ARD (sparse regression weights), ASD, or empirical bayes
+						- allows you to marginally integrate out the parameters.
+						- ARD updates its prior variances, and it'll find a sparse set of weights.
+						- it'll update the prior variance to 0
+					- advantage: we can learn it directly from the data
+
+				- use laplace approximation for the posterior, and learn the weights by integrating out the parameters
+				- hyperparameters govern the smoothness of the weights
+
+	- new data from max plank institute in florida -> corrected similar data from other pharrot -> "for free" you can have two papers.
+		- his data: 700 neurons, total weight space is number of neurons by number of stimuli -> maybe some clever tricks to do efficient scalable inference
+			- 

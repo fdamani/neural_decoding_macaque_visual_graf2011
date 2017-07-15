@@ -1,0 +1,9 @@
+data/
+
+
+# Byte-compiled / optimizmed / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+
