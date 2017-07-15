@@ -1,7 +1,9 @@
 to do:
 
+1. plot tuning curves (mean, variance)
 
-1. read Graf nature neuroscience paper 
-	a. understand model set up
-	b. understand details of plots
-	c. understand DATA
+2. poisson likelihood model
+
+3. bayesian logistic regression model
+
+
